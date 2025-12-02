@@ -11,9 +11,9 @@ BEGIN
     BEGIN
         BLOCK "040904B0"
         BEGIN
-            VALUE "FileDescription",  "Jirenyte"
-            VALUE "OriginalFilename", "Jirenyte.exe"
-            VALUE "ProductName",      "Jirenyte Launcher"
+            VALUE "FileDescription",  "Project PK"
+            VALUE "OriginalFilename", "Project PK.exe"
+            VALUE "ProductName",      "Project PK Launcher"
         END
     END
 

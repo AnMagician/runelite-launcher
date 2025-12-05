@@ -1,10 +1,10 @@
 [Setup]
-AppName=Project PK Launcher
-AppPublisher=Project PK
-UninstallDisplayName=Project PK
+AppName=Project-PK Launcher
+AppPublisher=Project-PK
+UninstallDisplayName=Project-PK
 AppVersion=${project.version}
 AppSupportURL=https://project-pk.com
-DefaultDirName={localappdata}\Project PK
+DefaultDirName={localappdata}\Project-PK
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000
@@ -13,40 +13,40 @@ PrivilegesRequired=lowest
 
 WizardSmallImageFile=${project.projectDir}/innosetup/runelite_small.bmp
 SetupIconFile=${project.projectDir}/innosetup/runelite.ico
-UninstallDisplayIcon={app}\Project PK.exe
+UninstallDisplayIcon={app}\Project-PK.exe
 
 Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${project.projectDir}
-OutputBaseFilename=Project PKSetup
+OutputBaseFilename=Project-PKSetup
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
-Source: "${project.projectDir}\build\win-x64\Project PK.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "${project.projectDir}\build\win-x64\Project PK.jar"; DestDir: "{app}"
+Source: "${project.projectDir}\build\win-x64\Project-PK.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${project.projectDir}\build\win-x64\Project-PK.jar"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\launcher_amd64.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "${project.projectDir}\build\win-x64\config.json"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs
 
 [Icons]
 ; start menu
-Name: "{userprograms}\Project PK\Project PK"; Filename: "{app}\Project PK.exe"
-Name: "{userprograms}\Project PK\Project PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
-Name: "{userprograms}\Project PK\Project PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\Project PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\Project-PK\Project-PK"; Filename: "{app}\Project-PK.exe"
+Name: "{userprograms}\Project-PK\Project-PK (configure)"; Filename: "{app}\Project-PK.exe"; Parameters: "--configure"
+Name: "{userprograms}\Project-PK\Project-PK (safe mode)"; Filename: "{app}\Project-PK.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\Project-PK"; Filename: "{app}\Project-PK.exe"; Tasks: DesktopIcon
 
 [Run]
-Filename: "{app}\Project PK.exe"; Parameters: "--postinstall"; Flags: nowait
-Filename: "{app}\Project PK.exe"; Description: "&Open Project PK"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\Project-PK.exe"; Parameters: "--postinstall"; Flags: nowait
+Filename: "{app}\Project-PK.exe"; Description: "&Open Project-PK"; Flags: postinstall skipifsilent nowait
 
 [InstallDelete]
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
 Type: filesandordirs; Name: "{app}\jre"
 ; previous shortcut
-Type: files; Name: "{userprograms}\Project PK.lnk"
+Type: files; Name: "{userprograms}\Project-PK.lnk"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{%USERPROFILE}\.project_pk\repository2"
@@ -58,7 +58,7 @@ Root: HKCU; Subkey: "Software\Classes\runelite-jav"; ValueType: string; ValueNam
 Root: HKCU; Subkey: "Software\Classes\runelite-jav"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open"; Flags: uninsdeletekey
-Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Project PK.exe"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Project-PK.exe"" ""%1"""; Flags: uninsdeletekey
 
 [Code]
 #include "upgrade.pas"

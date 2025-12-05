@@ -88,8 +88,8 @@ class ForkLauncher
 			case MacOS:
 				path = Paths.get(current.info().command().get());
 				// on macOS packr changes the cwd to the resource directory prior to launching the JVM,
-				// causing current.info().command() to return /Applications/Project PK.app/Contents/Resources/./Project PK
-				// despite the executable really being at /Applications/Project PK.app/Contents/MacOS/Project PK
+				// causing current.info().command() to return /Applications/Project-PK.app/Contents/Resources/./Project-PK
+				// despite the executable really being at /Applications/Project-PK.app/Contents/MacOS/Project-PK
 				path = path.normalize()
 					.resolveSibling(Path.of("..", "MacOS", path.getFileName().toString()))
 					.normalize();

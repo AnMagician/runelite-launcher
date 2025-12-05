@@ -36,7 +36,7 @@ repositories {
 
 group = "net.runelite"
 version = "2.7.6-SNAPSHOT"
-description = "Project PK Launcher"
+description = "Project-PK Launcher"
 
 dependencies {
     implementation(libs.slf4j.api)

@@ -96,7 +96,7 @@ jobs:
           Project-PK-aarch64.AppImage
         if-no-files-found: error
   macos:
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
     - uses: actions/setup-python@v5
       with:

@@ -11,7 +11,7 @@ ExtraDiskSpaceRequired=30000000
 ArchitecturesAllowed=x64
 PrivilegesRequired=lowest
 
-WizardSmallImageFile=${project.projectDir}/innosetup/runelite_small.bmp
+WizardSmallImageFile=${project.projectDir}/innosetup/icon_128.bmp
 SetupIconFile=${project.projectDir}/innosetup/favicon.ico
 UninstallDisplayIcon={app}\Project-PK.exe
 

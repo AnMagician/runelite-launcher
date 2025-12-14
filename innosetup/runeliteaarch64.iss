@@ -12,7 +12,7 @@ ArchitecturesAllowed=arm64
 PrivilegesRequired=lowest
 
 WizardSmallImageFile=${project.projectDir}/innosetup/runelite_small.bmp
-SetupIconFile=${project.projectDir}/innosetup/runelite.ico
+SetupIconFile=${project.projectDir}/innosetup/favicon.ico
 UninstallDisplayIcon={app}\Project-PK.exe
 
 Compression=lzma2

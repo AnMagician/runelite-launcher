@@ -34,7 +34,7 @@ repositories {
     maven { url = uri("https://repo.runelite.net") }
 }
 
-group = "net.runelite"
+group = "project_pk"
 version = "2.7.6-SNAPSHOT"
 description = "Project PK Launcher"
 

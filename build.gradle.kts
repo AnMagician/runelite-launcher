@@ -91,7 +91,7 @@ tasks {
                 arrayOf(
                     "runelite_net" to "project-pk.com",
                     "runelite_128" to "runelite_128.png",
-                    "runelite_splash" to "runelite_splash.png"
+                    "runelite_splash" to "runelite_128.png"
                 )
             else arrayOf(
                 "runelite_net" to "",

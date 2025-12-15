@@ -412,6 +412,8 @@ public class Launcher {
             jvmParams.add("-XX:ErrorFile=" + CRASH_FILES.getAbsolutePath());
             // Add VM args from cli/env
             jvmParams.addAll(getJvmArgs(settings));
+            
+            log.debug("LauncherProperties.getRuneLiteSplash() " + LauncherProperties.getRuneLiteSplash());
 
             if (settings.launchMode == LaunchMode.REFLECT) {
                 log.debug("Using launch mode: REFLECT");

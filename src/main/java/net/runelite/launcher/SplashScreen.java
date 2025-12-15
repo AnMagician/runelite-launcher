@@ -72,6 +72,8 @@ public class SplashScreen extends JFrame implements ActionListener {
 
         Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
 
+        System.out.println("here splash icon dir: " + LauncherProperties.getRuneLiteSplash());
+
         BufferedImage logo;
         try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash())) {
             logo = ImageIO.read(in);

@@ -248,8 +248,6 @@ public class Launcher {
             // java2d properties have to be set prior to the graphics environment startup
             setJvmParams(jvmProps);
 
-			log.error("error 69");
-
             if (settings.isSkipTlsVerification()) {
                 TrustManagerUtil.setupInsecureTrustManager();
                 // This is the only way to disable hostname verification with HttpClient - https://stackoverflow.com/a/52995420
@@ -258,8 +256,6 @@ public class Launcher {
                 TrustManagerUtil.setupTrustManager();
             }
 
-			log.error("lmao wat");
-
             // setup http client after the default SSLContext is set
             httpClient = HttpClient.newBuilder()
                     .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -267,18 +263,14 @@ public class Launcher {
 
             if (postInstall) {
                 postInstall(settings);
-				log.error("here post install");
                 return;
             }
 
             SplashScreen.init();
             SplashScreen.stage(0, "Preparing", "Setting up environment");
 
-			log.error("after splash screen is initiated");
-
             // Print out system info
             if (log.isDebugEnabled()) {
-				log.error("error 1");
                 final RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
 
                 log.debug("Command line arguments: {}", String.join(" ", args));
@@ -298,13 +290,11 @@ public class Launcher {
 
             // fix up permissions before potentially removing the RUNASADMIN compat key
             if (FilesystemPermissions.check()) {
-				log.error("error 2");
                 // check() opens an error dialog
                 return;
             }
 
             if (JagexLauncherCompatibility.check()) {
-				log.error("error 3");
                 // check() opens an error dialog
                 return;
             }
@@ -332,8 +322,6 @@ public class Launcher {
                 return;
             }
 
-			log.error("after splash screen is initiated");
-
             SplashScreen.stage(.07, null, "Checking for updates");
 
             Updater.update(bootstrap, settings, args);
@@ -347,8 +335,6 @@ public class Launcher {
 
             // update packr vmargs to the launcher vmargs from bootstrap.
             PackrConfig.updateLauncherArgs(bootstrap, settings);
-
-			log.error("updating launcher args...");
 
             if (!REPO_DIR.exists() && !REPO_DIR.mkdirs()) {
                 log.error("unable to create repo directory {}", REPO_DIR);
@@ -385,8 +371,6 @@ public class Launcher {
             // Clean out old artifacts from the repository
             clean(artifacts);
 
-			log.error("cleaning artifacts...");
-
             if (JAR_HASH_MODE) {
                 try {
                     download(artifacts, settings.isNodiffs());
@@ -414,15 +398,9 @@ public class Launcher {
                 }
             }
 
-			log.error("downloading artifacts");
-
             final Collection<String> clientArgs = getClientArgs(settings);
 
-			log.error("before starting the client");
-
             SplashScreen.stage(.90, "Starting the client", "");
-
-			log.error("after starting the client");
 
             var classpath = artifacts.stream()
                     .map(dep -> new File(REPO_DIR, dep.getName()))

@@ -39,202 +39,173 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 @Slf4j
-public class SplashScreen extends JFrame implements ActionListener
-{
-	private static final Color BRAND_ORANGE = new Color(0, 194, 0/*220, 138, 0*/);
-	private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
+public class SplashScreen extends JFrame implements ActionListener {
+    private static final Color BRAND_ORANGE = new Color(0, 194, 0/*220, 138, 0*/);
+    private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
 
-	private static final int WIDTH = 200;
-	private static final int PAD = 10;
+    private static final int WIDTH = 200;
+    private static final int PAD = 10;
 
-	private static SplashScreen INSTANCE;
+    private static SplashScreen INSTANCE;
 
-	private final JLabel action = new JLabel("Loading");
-	private final JProgressBar progress = new JProgressBar();
-	private final JLabel subAction = new JLabel();
-	private final Timer timer;
+    private final JLabel action = new JLabel("Loading");
+    private final JProgressBar progress = new JProgressBar();
+    private final JLabel subAction = new JLabel();
+    private final Timer timer;
 
-	private volatile double overallProgress = 0;
-	private volatile String actionText = "Loading";
-	private volatile String subActionText = "";
-	private volatile String progressText = null;
+    private volatile double overallProgress = 0;
+    private volatile String actionText = "Loading";
+    private volatile String subActionText = "";
+    private volatile String progressText = null;
 
-	private SplashScreen() throws IOException
-	{
-		setTitle(Constants.SERVER_NAME + " Launcher");
+    private SplashScreen() throws IOException {
+        setTitle(Constants.SERVER_NAME + " Launcher");
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setUndecorated(true);
-		try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLite128()))
-		{
-			setIconImage(ImageIO.read(in));
-		}
-		setLayout(null);
-		Container pane = getContentPane();
-		pane.setBackground(DARKER_GRAY_COLOR);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLite128())) {
+            setIconImage(ImageIO.read(in));
+        }
+        setLayout(null);
+        Container pane = getContentPane();
+        pane.setBackground(DARKER_GRAY_COLOR);
 
-		Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
+        Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
 
-//		BufferedImage logo;
-//		try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash()))
-//		{
-//			logo = ImageIO.read(in);
-//		}
-//		JLabel logoLabel = new JLabel(new ImageIcon(logo));
-//		pane.add(logoLabel);
-//		logoLabel.setBounds(0, 0, WIDTH, WIDTH);
+        BufferedImage logo;
+        try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash())) {
+            logo = ImageIO.read(in);
+        }
+        JLabel logoLabel = new JLabel(new ImageIcon(logo));
+        pane.add(logoLabel);
+        logoLabel.setBounds(0, 0, WIDTH, WIDTH);
 
-		int y = WIDTH;
+        int y = WIDTH;
 
-		pane.add(action);
-		action.setForeground(Color.WHITE);
-		action.setBounds(0, y, WIDTH, 16);
-		action.setHorizontalAlignment(SwingConstants.CENTER);
-		action.setFont(font);
-		y += action.getHeight() + PAD;
+        pane.add(action);
+        action.setForeground(Color.WHITE);
+        action.setBounds(0, y, WIDTH, 16);
+        action.setHorizontalAlignment(SwingConstants.CENTER);
+        action.setFont(font);
+        y += action.getHeight() + PAD;
 
-		pane.add(progress);
-		progress.setForeground(BRAND_ORANGE);
-		progress.setBackground(BRAND_ORANGE.darker().darker());
-		progress.setBorder(new EmptyBorder(0, 0, 0, 0));
-		progress.setBounds(0, y, WIDTH, 14);
-		progress.setFont(font);
-		progress.setUI(new BasicProgressBarUI()
-		{
-			@Override
-			protected Color getSelectionBackground()
-			{
-				return Color.BLACK;
-			}
+        pane.add(progress);
+        progress.setForeground(BRAND_ORANGE);
+        progress.setBackground(BRAND_ORANGE.darker().darker());
+        progress.setBorder(new EmptyBorder(0, 0, 0, 0));
+        progress.setBounds(0, y, WIDTH, 14);
+        progress.setFont(font);
+        progress.setUI(new BasicProgressBarUI() {
+            @Override
+            protected Color getSelectionBackground() {
+                return Color.BLACK;
+            }
 
-			@Override
-			protected Color getSelectionForeground()
-			{
-				return Color.BLACK;
-			}
-		});
-		y += 12 + PAD;
+            @Override
+            protected Color getSelectionForeground() {
+                return Color.BLACK;
+            }
+        });
+        y += 12 + PAD;
 
-		pane.add(subAction);
-		subAction.setForeground(Color.LIGHT_GRAY);
-		subAction.setBounds(0, y, WIDTH, 16);
-		subAction.setHorizontalAlignment(SwingConstants.CENTER);
-		subAction.setFont(font);
-		y += subAction.getHeight() + PAD;
+        pane.add(subAction);
+        subAction.setForeground(Color.LIGHT_GRAY);
+        subAction.setBounds(0, y, WIDTH, 16);
+        subAction.setHorizontalAlignment(SwingConstants.CENTER);
+        subAction.setFont(font);
+        y += subAction.getHeight() + PAD;
 
-		setSize(WIDTH, y);
-		setLocationRelativeTo(null);
+        setSize(WIDTH, y);
+        setLocationRelativeTo(null);
 
-		timer = new Timer(100, this);
-		timer.setRepeats(true);
-		timer.start();
+        timer = new Timer(100, this);
+        timer.setRepeats(true);
+        timer.start();
 
-		setVisible(true);
-	}
+        setVisible(true);
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		action.setText(actionText);
-		subAction.setText(subActionText);
-		progress.setMaximum(1000);
-		progress.setValue((int) (overallProgress * 1000));
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        action.setText(actionText);
+        subAction.setText(subActionText);
+        progress.setMaximum(1000);
+        progress.setValue((int) (overallProgress * 1000));
 
-		String progressText = this.progressText;
-		if (progressText == null)
-		{
-			progress.setStringPainted(false);
-		}
-		else
-		{
-			progress.setStringPainted(true);
-			progress.setString(progressText);
-		}
-	}
+        String progressText = this.progressText;
+        if (progressText == null) {
+            progress.setStringPainted(false);
+        } else {
+            progress.setStringPainted(true);
+            progress.setString(progressText);
+        }
+    }
 
-	public static void init()
-	{
-		try
-		{
-			SwingUtilities.invokeAndWait(() ->
-			{
-				if (INSTANCE != null)
-				{
-					return;
-				}
+    public static void init() {
+        try {
+            SwingUtilities.invokeAndWait(() ->
+            {
+                if (INSTANCE != null) {
+                    return;
+                }
 
-				try
-				{
-					UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-					INSTANCE = new SplashScreen();
-				}
-				catch (Exception e)
-				{
-					log.warn("Unable to start splash screen", e);
-				}
-			});
-		}
-		catch (InterruptedException | InvocationTargetException bs)
-		{
-			throw new RuntimeException(bs);
-		}
-	}
+                try {
+                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                    INSTANCE = new SplashScreen();
+                } catch (Exception e) {
+                    log.warn("Unable to start splash screen", e);
+                }
+            });
+        } catch (InterruptedException | InvocationTargetException bs) {
+            throw new RuntimeException(bs);
+        }
+    }
 
-	public static void stop()
-	{
-		SwingUtilities.invokeLater(() ->
-		{
-			if (INSTANCE == null)
-			{
-				return;
-			}
+    public static void stop() {
+        SwingUtilities.invokeLater(() ->
+        {
+            if (INSTANCE == null) {
+                return;
+            }
 
-			INSTANCE.timer.stop();
-			// The CLOSE_ALL_WINDOWS quit strategy on MacOS dispatches WINDOW_CLOSING events to each frame
-			// from Window.getWindows. However, getWindows uses weak refs and relies on gc to remove windows
-			// from its list, causing events to get dispatched to disposed frames. The frames handle the events
-			// regardless of being disposed and will run the configured close operation. Set the close operation
-			// to DO_NOTHING_ON_CLOSE prior to disposing to prevent this.
-			INSTANCE.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-			INSTANCE.dispose();
-			INSTANCE = null;
-		});
-	}
+            INSTANCE.timer.stop();
+            // The CLOSE_ALL_WINDOWS quit strategy on MacOS dispatches WINDOW_CLOSING events to each frame
+            // from Window.getWindows. However, getWindows uses weak refs and relies on gc to remove windows
+            // from its list, causing events to get dispatched to disposed frames. The frames handle the events
+            // regardless of being disposed and will run the configured close operation. Set the close operation
+            // to DO_NOTHING_ON_CLOSE prior to disposing to prevent this.
+            INSTANCE.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            INSTANCE.dispose();
+            INSTANCE = null;
+        });
+    }
 
-	public static void stage(double overallProgress, @Nullable String actionText, String subActionText)
-	{
-		stage(overallProgress, actionText, subActionText, null);
-	}
+    public static void stage(double overallProgress, @Nullable String actionText, String subActionText) {
+        stage(overallProgress, actionText, subActionText, null);
+    }
 
-	public static void stage(double startProgress, double endProgress,
-		@Nullable String actionText, String subActionText,
-		long done, long total, boolean mib)
-	{
-		String progress;
-		if (mib)
-		{
-			final double MiB = 1024 * 1024;
-			final double CEIL = 1.d / 10.d;
-			progress = String.format("%.1f / %.1f MiB", done / MiB, (total / MiB) + CEIL);
-		}
-		else
-		{
-			progress = done + " / " + total;
-		}
-		stage(startProgress + ((endProgress - startProgress) * done / total), actionText, subActionText, progress);
-	}
+    public static void stage(double startProgress, double endProgress,
+                             @Nullable String actionText, String subActionText,
+                             long done, long total, boolean mib) {
+        String progress;
+        if (mib) {
+            final double MiB = 1024 * 1024;
+            final double CEIL = 1.d / 10.d;
+            progress = String.format("%.1f / %.1f MiB", done / MiB, (total / MiB) + CEIL);
+        } else {
+            progress = done + " / " + total;
+        }
+        stage(startProgress + ((endProgress - startProgress) * done / total), actionText, subActionText, progress);
+    }
 
-	public static void stage(double overallProgress, @Nullable String actionText, String subActionText, @Nullable String progressText)
-	{
-		if (INSTANCE != null)
-		{
-			INSTANCE.overallProgress = overallProgress;
-			if (actionText != null)
-			{
-				INSTANCE.actionText = actionText;
-			}
-			INSTANCE.subActionText = subActionText;
-			INSTANCE.progressText = progressText;
-		}
-	}
+    public static void stage(double overallProgress, @Nullable String actionText, String subActionText, @Nullable String progressText) {
+        if (INSTANCE != null) {
+            INSTANCE.overallProgress = overallProgress;
+            if (actionText != null) {
+                INSTANCE.actionText = actionText;
+            }
+            INSTANCE.subActionText = subActionText;
+            INSTANCE.progressText = progressText;
+        }
+    }
 }

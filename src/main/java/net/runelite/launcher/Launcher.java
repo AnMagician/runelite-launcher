@@ -413,8 +413,6 @@ public class Launcher {
             // Add VM args from cli/env
             jvmParams.addAll(getJvmArgs(settings));
 
-            log.error("LauncherProperties.getRuneLiteSplash() " + LauncherProperties.getRuneLiteSplash());
-
             if (settings.launchMode == LaunchMode.REFLECT) {
                 log.debug("Using launch mode: REFLECT");
                 ReflectionLauncher.launch(classpath, clientArgs);

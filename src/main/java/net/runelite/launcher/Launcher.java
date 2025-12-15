@@ -258,6 +258,8 @@ public class Launcher {
                 TrustManagerUtil.setupTrustManager();
             }
 
+			log.error("lmao wat");
+
             // setup http client after the default SSLContext is set
             httpClient = HttpClient.newBuilder()
                     .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -265,11 +267,14 @@ public class Launcher {
 
             if (postInstall) {
                 postInstall(settings);
+				log.error("here post install");
                 return;
             }
 
             SplashScreen.init();
             SplashScreen.stage(0, "Preparing", "Setting up environment");
+
+			log.error("after splash screen is initiated");
 
             // Print out system info
             if (log.isDebugEnabled()) {
@@ -327,6 +332,8 @@ public class Launcher {
                 return;
             }
 
+			log.error("after splash screen is initiated");
+
             SplashScreen.stage(.07, null, "Checking for updates");
 
             Updater.update(bootstrap, settings, args);
@@ -340,6 +347,8 @@ public class Launcher {
 
             // update packr vmargs to the launcher vmargs from bootstrap.
             PackrConfig.updateLauncherArgs(bootstrap, settings);
+
+			log.error("updating launcher args...");
 
             if (!REPO_DIR.exists() && !REPO_DIR.mkdirs()) {
                 log.error("unable to create repo directory {}", REPO_DIR);
@@ -376,6 +385,8 @@ public class Launcher {
             // Clean out old artifacts from the repository
             clean(artifacts);
 
+			log.error("cleaning artifacts...");
+
             if (JAR_HASH_MODE) {
                 try {
                     download(artifacts, settings.isNodiffs());
@@ -403,8 +414,15 @@ public class Launcher {
                 }
             }
 
+			log.error("downloading artifacts");
+
             final Collection<String> clientArgs = getClientArgs(settings);
+
+			log.error("before starting the client");
+
             SplashScreen.stage(.90, "Starting the client", "");
+
+			log.error("after starting the client");
 
             var classpath = artifacts.stream()
                     .map(dep -> new File(REPO_DIR, dep.getName()))

@@ -76,7 +76,7 @@ public class SplashScreen extends JFrame implements ActionListener
 		Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
 
 		BufferedImage logo;
-		try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash()))
+		try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLite128())) //SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash()))
 		{
 			logo = ImageIO.read(in);
 		}

@@ -2,7 +2,7 @@
 
 set -e
 
-APPBASE="build/macos-x64/Project PK.app"
+APPBASE=build/macos-x64/Project\ PK.app
 
 build() {
     echo Launcher sha256sum

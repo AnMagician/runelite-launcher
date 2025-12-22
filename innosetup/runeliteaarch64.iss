@@ -49,7 +49,7 @@ Type: filesandordirs; Name: "{app}\jre"
 Type: files; Name: "{userprograms}\Project-PK.lnk"
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{%USERPROFILE}\.project_pk\repository2"
+Type: filesandordirs; Name: "{%USERPROFILE}\.project-pk\repository2"
 ; includes install_id, settings, etc
 Type: filesandordirs; Name: "{app}"
 

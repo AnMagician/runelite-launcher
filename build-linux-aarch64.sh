@@ -3,7 +3,7 @@
 set -e
 
 echo Launcher sha256sum
-sha256sum build/libs/Project-PK.jar
+sha256sum build/libs/Project\ PK.jar
 
 pushd native
 cmake -DCMAKE_TOOLCHAIN_FILE=arm64-linux-gcc.cmake -B build-aarch64 .
@@ -26,10 +26,10 @@ echo "$LINUX_AARCH64_CHKSUM linux_aarch64_jre.tar.gz" | sha256sum -c
 # Note: Host umask may have checked out this directory with g/o permissions blank
 chmod -R u=rwX,go=rX appimage
 # ...ditto for the build process
-chmod 644 build/libs/Project-PK.jar
+chmod 644 build/libs/Project\ PK.jar
 
 cp native/build-aarch64/src/Project-PK build/linux-aarch64/
-cp build/libs/Project-PK.jar build/linux-aarch64/
+cp build/libs/Project\ PK.jar build/linux-aarch64/
 cp packr/linux-aarch64-config.json build/linux-aarch64/config.json
 cp build/filtered-resources/runelite.desktop build/linux-aarch64/
 cp appimage/runelite.png build/linux-aarch64/
@@ -44,10 +44,10 @@ mkdir -p jre/lib/amd64/server/
 ln -s ../../server/libjvm.so jre/lib/amd64/server/ # packr looks for libjvm at this hardcoded path
 
 # Symlink AppRun -> Project-PK
-ln -s Project-PK AppRun
+ln -s Project\ PK AppRun
 
 # Ensure Project-PK is executable to all users
-chmod 755 Project-PK
+chmod 755 Project\ PK
 popd
 
 curl -z appimagetool-x86_64.AppImage -o appimagetool-x86_64.AppImage -L https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage

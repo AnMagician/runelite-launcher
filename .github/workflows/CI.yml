@@ -58,9 +58,9 @@ jobs:
       with:
         name: windows
         path: |
-          Project-PKSetup.exe
-          Project-PKSetup32.exe
-          Project-PKSetupAArch64.exe
+          Project PKSetup.exe
+          Project PKSetup32.exe
+          Project PKSetupAArch64.exe
         if-no-files-found: error
   linux:
     runs-on: ubuntu-24.04
@@ -83,7 +83,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: jar
-        path: build/libs/Project-PK.jar
+        path: build/libs/Project PK.jar
         if-no-files-found: error
     - uses: actions/upload-artifact@v4
       with:

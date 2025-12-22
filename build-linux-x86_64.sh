@@ -3,7 +3,7 @@
 set -e
 
 echo Launcher sha256sum
-sha256sum build/libs/Project-PK.jar
+sha256sum build/libs/Project PK.jar
 
 pushd native
 cmake -B build-x64 .
@@ -26,10 +26,10 @@ echo "$LINUX_AMD64_CHKSUM linux64_jre.tar.gz" | sha256sum -c
 # Note: Host umask may have checked out this directory with g/o permissions blank
 chmod -R u=rwX,go=rX appimage
 # ...ditto for the build process
-chmod 644 build/libs/Project-PK.jar
+chmod 644 build/libs/Project PK.jar
 
 cp native/build-x64/src/Project-PK build/linux-x64/
-cp build/libs/Project-PK.jar build/linux-x64/
+cp build/libs/Project PK.jar build/linux-x64/
 cp packr/linux-x64-config.json build/linux-x64/config.json
 cp build/filtered-resources/runelite.desktop build/linux-x64/
 cp appimage/runelite.png build/linux-x64/

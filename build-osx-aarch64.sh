@@ -6,7 +6,7 @@ APPBASE="build/macos-aarch64/Project-PK.app"
 
 build() {
     echo Launcher sha256sum
-    shasum -a 256 build/libs/Project-PK.jar
+    shasum -a 256 build/libs/Project PK.jar
 
     pushd native
     cmake -DCMAKE_OSX_ARCHITECTURES=arm64 -B build-aarch64 .
@@ -27,7 +27,7 @@ build() {
     mkdir -p $APPBASE/Contents/{MacOS,Resources}
 
     cp native/build-aarch64/src/Project-PK $APPBASE/Contents/MacOS/
-    cp build/libs/Project-PK.jar $APPBASE/Contents/Resources/
+    cp build/libs/Project PK.jar $APPBASE/Contents/Resources/
     cp packr/macos-aarch64-config.json $APPBASE/Contents/Resources/config.json
     cp build/filtered-resources/Info.plist $APPBASE/Contents/
     cp osx/runelite.icns $APPBASE/Contents/Resources/icons.icns

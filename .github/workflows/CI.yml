@@ -58,9 +58,9 @@ jobs:
       with:
         name: windows
         path: |
-          Project PK Setup.exe
-          Project PK Setup32.exe
-          Project PK SetupAArch64.exe
+          Project-PK-Setup.exe
+          Project-PK-Setup32.exe
+          Project-PK-SetupAArch64.exe
         if-no-files-found: error
   linux:
     runs-on: ubuntu-24.04

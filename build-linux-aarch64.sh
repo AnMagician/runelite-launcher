@@ -28,7 +28,7 @@ chmod -R u=rwX,go=rX appimage
 # ...ditto for the build process
 chmod 644 build/libs/Project\ PK.jar
 
-cp native/build-aarch64/src/Project-PK build/linux-aarch64/
+cp native/build-aarch64/src/Project\ PK build/linux-aarch64/
 cp build/libs/Project\ PK.jar build/linux-aarch64/
 cp packr/linux-aarch64-config.json build/linux-aarch64/config.json
 cp build/filtered-resources/runelite.desktop build/linux-aarch64/

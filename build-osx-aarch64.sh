@@ -26,7 +26,7 @@ build() {
 
     mkdir -p $APPBASE/Contents/{MacOS,Resources}
 
-    cp native/build-aarch64/src/Project-PK $APPBASE/Contents/MacOS/
+    cp native/build-aarch64/src/Project\ PK $APPBASE/Contents/MacOS/
     cp build/libs/Project\ PK.jar $APPBASE/Contents/Resources/
     cp packr/macos-aarch64-config.json $APPBASE/Contents/Resources/config.json
     cp build/filtered-resources/Info.plist $APPBASE/Contents/

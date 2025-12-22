@@ -3,7 +3,7 @@
 set -e
 
 echo Launcher sha256sum
-sha256sum build/libs/Project\ PK.jar
+sha256sum build/libs/Project-PK.jar
 
 cmake -S liblauncher -B liblauncher/build64 -A x64
 cmake --build liblauncher/build64 --config Release
@@ -25,7 +25,7 @@ fi
 echo "$WIN64_CHKSUM win64_jre.zip" | sha256sum -c
 
 cp native/build-x64/src/Release/Project\ PK.exe build/win-x64/
-cp build/libs/Project\ PK.jar build/win-x64/
+cp build/libs/Project-PK.jar build/win-x64/
 cp packr/win-x64-config.json build/win-x64/config.json
 cp liblauncher/build64/Release/launcher_amd64.dll build/win-x64/
 

@@ -4,7 +4,7 @@ AppPublisher=Project PK
 UninstallDisplayName=Project PK
 AppVersion=${project.version}
 AppSupportURL=https://project-pk.com
-DefaultDirName={localappdata}\Project-PK
+DefaultDirName={localappdata}\Project PK
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000
@@ -19,7 +19,7 @@ Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${project.projectDir}
-OutputBaseFilename=Project-PKSetup32
+OutputBaseFilename=Project PK Setup32
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";
@@ -33,10 +33,10 @@ Source: "${project.projectDir}\build\win-x86\jre\*"; DestDir: "{app}\jre"; Flags
 
 [Icons]
 ; start menu
-Name: "{userprograms}\Project-PK\Project-PK"; Filename: "{app}\Project PK.exe"
-Name: "{userprograms}\Project-PK\Project-PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
-Name: "{userprograms}\Project-PK\Project-PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\Project-PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\Project PK\Project- K"; Filename: "{app}\Project PK.exe"
+Name: "{userprograms}\Project PK\Project PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
+Name: "{userprograms}\Project PK\Project PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\Project PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
 
 [Run]
 Filename: "{app}\Project PK.exe"; Parameters: "--postinstall"; Flags: nowait

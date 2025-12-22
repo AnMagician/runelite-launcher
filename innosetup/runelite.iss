@@ -33,10 +33,10 @@ Source: "${project.projectDir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags
 
 [Icons]
 ; start menu
-Name: "{userprograms}\Project-PK\Project-PK"; Filename: "{app}\Project PK.exe"
-Name: "{userprograms}\Project-PK\Project-PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
-Name: "{userprograms}\Project-PK\Project-PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\Project-PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\Project PK\Project PK"; Filename: "{app}\Project PK.exe"
+Name: "{userprograms}\Project PK\Project PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
+Name: "{userprograms}\Project PK\Project PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\Project PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
 
 [Run]
 Filename: "{app}\Project PK.exe"; Parameters: "--postinstall"; Flags: nowait

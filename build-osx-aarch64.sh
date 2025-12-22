@@ -38,10 +38,10 @@ build() {
 
     echo Setting world execute permissions on Project PK
     pushd $APPBASE
-    chmod g+x,o+x Contents/MacOS/Project-PK
+    chmod g+x,o+x Contents/MacOS/Project\ PK
     popd
 
-    otool -l $APPBASE/Contents/MacOS/Project-PK
+    otool -l $APPBASE/Contents/MacOS/Project\ PK
 }
 
 dmg() {
@@ -50,7 +50,7 @@ dmg() {
 
     # create-dmg exits with an error code due to no code signing, but is still okay
     create-dmg $APPBASE . || true
-    mv Project-PK\ *.dmg Project\ PK-aarch64.dmg
+    mv Project\ PK\ *.dmg Project\ PK-aarch64.dmg
 
     # dump for CI
     hdiutil imageinfo Project\ PK-aarch64.dmg

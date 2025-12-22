@@ -58,4 +58,4 @@ chmod +x appimagetool-x86_64.AppImage
 ./appimagetool-x86_64.AppImage \
 	--runtime-file runtime-aarch64 \
 	build/linux-aarch64/ \
-	Project-PK-aarch64.AppImage
+	Project\ PK-aarch64.AppImage

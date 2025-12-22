@@ -46,7 +46,7 @@ Filename: "{app}\Project PK.exe"; Description: "&Open Project PK"; Flags: postin
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
 Type: filesandordirs; Name: "{app}\jre"
 ; previous shortcut
-Type: files; Name: "{userprograms}\Project-PK.lnk"
+Type: files; Name: "{userprograms}\Project PK.lnk"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{%USERPROFILE}\.project-pk\repository2"

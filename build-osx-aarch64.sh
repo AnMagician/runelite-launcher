@@ -6,7 +6,7 @@ APPBASE=build/macos-aarch64/Project-PK.app
 
 build() {
     echo Launcher sha256sum
-    shasum -a 256 build/libs/Project\ PK.jar
+    shasum -a 256 build/libs/Project-PK.jar
 
     pushd native
     cmake -DCMAKE_OSX_ARCHITECTURES=arm64 -B build-aarch64 .
@@ -26,7 +26,7 @@ build() {
 
     mkdir -p $APPBASE/Contents/{MacOS,Resources}
 
-    cp "native/build-aarch64/src/Project-PK" $APPBASE/Contents/MacOS/
+    cp native/build-aarch64/src/Project-PK $APPBASE/Contents/MacOS/
     cp build/libs/Project-PK.jar $APPBASE/Contents/Resources/
     cp packr/macos-aarch64-config.json $APPBASE/Contents/Resources/config.json
     cp build/filtered-resources/Info.plist $APPBASE/Contents/
@@ -50,24 +50,24 @@ dmg() {
 
     # create-dmg exits with an error code due to no code signing, but is still okay
     create-dmg $APPBASE . || true
-    mv Project\ PK\ *.dmg Project\ PK-aarch64.dmg
+    mv Project-PK\ *.dmg Project-PK-aarch64.dmg
 
     # dump for CI
-    hdiutil imageinfo Project\ PK-aarch64.dmg
+    hdiutil imageinfo Project-PK-aarch64.dmg
 
-    if ! hdiutil imageinfo Project\ PK-aarch64.dmg | grep -q "Format: ULFO" ; then
+    if ! hdiutil imageinfo Project-PK-aarch64.dmg | grep -q "Format: ULFO" ; then
         echo Format of dmg is not ULFO
         exit 1
     fi
 
-    if ! hdiutil imageinfo Project\ PK-aarch64.dmg | grep -q "Apple_HFS" ; then
+    if ! hdiutil imageinfo Project-PK-aarch64.dmg | grep -q "Apple_HFS" ; then
         echo Filesystem of dmg is not Apple_HFS
         exit 1
     fi
 
     # Notarize app
-    if xcrun notarytool submit Project\ PK-aarch64.dmg --wait --keychain-profile "AC_PASSWORD" ; then
-        xcrun stapler staple Project\ PK-aarch64.dmg
+    if xcrun notarytool submit Project-PK-aarch64.dmg --wait --keychain-profile "AC_PASSWORD" ; then
+        xcrun stapler staple Project-PK-aarch64.dmg
     fi
 }
 

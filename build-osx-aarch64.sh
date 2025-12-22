@@ -2,7 +2,7 @@
 
 set -e
 
-APPBASE=build/macos-aarch64/Project-PK.app
+APPBASE="build/macos-aarch64/Project-PK.app"
 
 build() {
     echo Launcher sha256sum
@@ -36,7 +36,7 @@ build() {
     mkdir $APPBASE/Contents/Resources/jre
     mv jdk-$MAC_AARCH64_VERSION-jre/Contents/Home/* $APPBASE/Contents/Resources/jre
 
-    echo Setting world execute permissions on Project PK
+    echo Setting world execute permissions on Project-PK
     pushd $APPBASE
     chmod g+x,o+x Contents/MacOS/Project-PK
     popd

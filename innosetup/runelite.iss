@@ -4,7 +4,7 @@ AppPublisher=Project PK
 UninstallDisplayName=Project PK
 AppVersion=${project.version}
 AppSupportURL=https://project-pk.com
-DefaultDirName={localappdata}\Project-PK
+DefaultDirName={localappdata}\Project PK
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000

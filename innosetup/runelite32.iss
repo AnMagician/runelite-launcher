@@ -1,7 +1,7 @@
 [Setup]
-AppName=Project-PK Launcher
-AppPublisher=Project-PK
-UninstallDisplayName=Project-PK
+AppName=Project PK Launcher
+AppPublisher=Project PK
+UninstallDisplayName=Project PK
 AppVersion=${project.version}
 AppSupportURL=https://project-pk.com
 DefaultDirName={localappdata}\Project-PK

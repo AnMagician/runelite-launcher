@@ -13,7 +13,7 @@ PrivilegesRequired=lowest
 
 WizardSmallImageFile=${project.projectDir}/innosetup/icon_128.bmp
 SetupIconFile=${project.projectDir}/innosetup/favicon.ico
-UninstallDisplayIcon={app}\Project PK.exe
+UninstallDisplayIcon={app}\Project-PK.exe
 
 Compression=lzma2
 SolidCompression=yes
@@ -25,22 +25,22 @@ OutputBaseFilename=Project-PKSetup
 Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
-Source: "${project.projectDir}\build\win-x64\Project PK.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "${project.projectDir}\build\win-x64\Project PK.jar"; DestDir: "{app}"
+Source: "${project.projectDir}\build\win-x64\Project-PK.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${project.projectDir}\build\win-x64\Project-PK.jar"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\launcher_amd64.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "${project.projectDir}\build\win-x64\config.json"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs
 
 [Icons]
 ; start menu
-Name: "{userprograms}\Project-PK\Project-PK"; Filename: "{app}\Project PK.exe"
-Name: "{userprograms}\Project-PK\Project-PK (configure)"; Filename: "{app}\Project PK.exe"; Parameters: "--configure"
-Name: "{userprograms}\Project-PK\Project-PK (safe mode)"; Filename: "{app}\Project PK.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\Project-PK"; Filename: "{app}\Project PK.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\Project-PK\Project-PK"; Filename: "{app}\Project-PK.exe"
+Name: "{userprograms}\Project-PK\Project-PK (configure)"; Filename: "{app}\Project-PK.exe"; Parameters: "--configure"
+Name: "{userprograms}\Project-PK\Project-PK (safe mode)"; Filename: "{app}\Project-PK.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\Project-PK"; Filename: "{app}\Project-PK.exe"; Tasks: DesktopIcon
 
 [Run]
-Filename: "{app}\Project PK.exe"; Parameters: "--postinstall"; Flags: nowait
-Filename: "{app}\Project PK.exe"; Description: "&Open Project PK"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\Project-PK.exe"; Parameters: "--postinstall"; Flags: nowait
+Filename: "{app}\Project-PK.exe"; Description: "&Open Project-PK"; Flags: postinstall skipifsilent nowait
 
 [InstallDelete]
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
@@ -58,7 +58,7 @@ Root: HKCU; Subkey: "Software\Classes\runelite-jav"; ValueType: string; ValueNam
 Root: HKCU; Subkey: "Software\Classes\runelite-jav"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open"; Flags: uninsdeletekey
-Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Project PK.exe"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\runelite-jav\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Project-PK.exe"" ""%1"""; Flags: uninsdeletekey
 
 [Code]
 #include "upgrade.pas"

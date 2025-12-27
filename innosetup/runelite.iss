@@ -26,7 +26,7 @@ Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
 Source: "${project.projectDir}\build\win-x64\Project PK.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "${project.projectDir}\build\win-x64\Project-PK.jar"; DestDir: "{app}"
+Source: "${project.projectDir}\build\win-x64\Project PK.jar"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\launcher_amd64.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "${project.projectDir}\build\win-x64\config.json"; DestDir: "{app}"
 Source: "${project.projectDir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs

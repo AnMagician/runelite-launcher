@@ -1,6 +1,6 @@
 [Setup]
 AppName=Project PK Launcher
-AppPublisher=Project PK
+AppPublisher=RuneLite
 UninstallDisplayName=Project PK
 AppVersion=${project.version}
 AppSupportURL=https://project-pk.com

@@ -100,7 +100,7 @@ public class Launcher {
 
     static HttpClient httpClient;
 
-    private static final boolean JAR_HASH_MODE = false;
+    private static final boolean JAR_HASH_MODE = true;
 
     private static OptionSet parseArgs(String[] args) {
         args = parseApplicationURI(args);

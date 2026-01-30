@@ -59,26 +59,30 @@ dependencies {
     testImplementation(libs.junit)
 }
 
-//tasks.withType<JavaCompile> {
-//    options.encoding = "UTF-8"
-//    options.release.set(11)
-//}
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+    options.release.set(11)
+}
 
 tasks.withType<AbstractArchiveTask>().configureEach {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
-    }
+sourceSets.create("java8") {
+    java.srcDirs("src/main/java8")
 }
 
-tasks.withType<JavaCompile> {
-    options.release.set(8)
+tasks.jar {
+    from(sourceSets["java8"].output)
+    duplicatesStrategy = DuplicatesStrategy.WARN
 }
 
+tasks.getByName<JavaCompile>("compileJava8Java") {
+    options.release.unset()
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
 
 tasks {
     processResources {
@@ -140,6 +144,7 @@ application {
 
 tasks.shadowJar {
     from(sourceSets.main.get().output)
+    from(sourceSets.getByName("java8").output)
     minimize {
         exclude(dependency("ch.qos.logback:.*:.*"))
     }

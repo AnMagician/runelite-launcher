@@ -2,11 +2,11 @@
 
 set -e
 
-APPBASE="build/macos-x64/Project-PK.app"
+APPBASE=build/macos-x64/Project-PK.app
 
 build() {
     echo Launcher sha256sum
-    shasum -a 256 build/libs/Project-PK.jar
+    shasum -a 256 build/libs/Project\ PK.jar
 
     pushd native
     cmake -DCMAKE_OSX_ARCHITECTURES=x86_64 -B build-x64 .

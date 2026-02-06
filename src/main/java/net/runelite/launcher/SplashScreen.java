@@ -40,7 +40,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @Slf4j
 public class SplashScreen extends JFrame implements ActionListener {
-    private static final Color BRAND_ORANGE = new Color(153, 10, 0/*220, 138, 0*/);
+    private static final Color BRAND_ORANGE = new Color(153, 10, 0);
     private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
 
     private static final int WIDTH = 200;
@@ -74,6 +74,7 @@ public class SplashScreen extends JFrame implements ActionListener {
 
         BufferedImage logo;
         try (var in = SplashScreen.class.getResourceAsStream(LauncherProperties.getRuneLiteSplash())) {
+            log.warn("in: " + in);
             logo = ImageIO.read(in);
         }
         JLabel logoLabel = new JLabel(new ImageIcon(logo));
@@ -82,6 +83,7 @@ public class SplashScreen extends JFrame implements ActionListener {
 
         int y = WIDTH;
 
+        // white colour is top text
         pane.add(action);
         action.setForeground(Color.WHITE);
         action.setBounds(0, y, WIDTH, 16);
@@ -89,6 +91,7 @@ public class SplashScreen extends JFrame implements ActionListener {
         action.setFont(font);
         y += action.getHeight() + PAD;
 
+        // main progress bar colours
         pane.add(progress);
         progress.setForeground(BRAND_ORANGE);
         progress.setBackground(BRAND_ORANGE.darker().darker());
@@ -98,16 +101,17 @@ public class SplashScreen extends JFrame implements ActionListener {
         progress.setUI(new BasicProgressBarUI() {
             @Override
             protected Color getSelectionBackground() {
-                return Color.BLACK;
+                return new Color(167, 155, 132);
             }
 
             @Override
             protected Color getSelectionForeground() {
-                return Color.BLACK;
+                return new Color(167, 155, 132);
             }
         });
         y += 12 + PAD;
 
+        // light gray colour is bottom text
         pane.add(subAction);
         subAction.setForeground(Color.LIGHT_GRAY);
         subAction.setBounds(0, y, WIDTH, 16);

@@ -2,6 +2,8 @@ name: CI
 
 on: [ push, pull_request ]
 
+# temp
+
 env:
   RUNELITE_PROFILE: ${{ vars.RUNELITE_PROFILE }}
 

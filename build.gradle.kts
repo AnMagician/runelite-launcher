@@ -35,7 +35,7 @@ repositories {
 }
 
 group = "net.runelite"
-version = "1.0.0"
+version = "1.6.9"
 description = "Project PK Launcher"
 
 dependencies {

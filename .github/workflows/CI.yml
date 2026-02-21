@@ -87,7 +87,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: jar
-          path: build/libs/Project-PK.jar
+          path: build/libs/Project-PK-test.jar
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         with:

@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
  * All rights reserved.
@@ -399,7 +400,6 @@ public class Launcher {
             }
 
             final Collection<String> clientArgs = getClientArgs(settings);
-
             SplashScreen.stage(.90, "Starting the client", "");
 
             var classpath = artifacts.stream()
@@ -455,6 +455,7 @@ public class Launcher {
         HttpRequest bootstrapReq = HttpRequest.newBuilder()
                 .uri(URI.create(LauncherProperties.getBootstrap()))
                 .header("User-Agent", USER_AGENT)
+                .header("Accept-Encoding", "gzip")
                 .GET()
                 .build();
 

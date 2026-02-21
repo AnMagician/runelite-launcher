@@ -16,7 +16,7 @@ begin
   Result := True;
   if EndsWith('!', username) then
   begin
-    MsgBox('Project PK is incompatible with Windows usernames which end with an exclamation mark (!).',
+    MsgBox('Project-PK is incompatible with Windows usernames which end with an exclamation mark (!).',
       mbError, MB_OK);
     Result := False;
   end;

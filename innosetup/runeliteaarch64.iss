@@ -19,7 +19,7 @@ Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${project.projectDir}
-OutputBaseFilename=Project-PK Setup AArch64
+OutputBaseFilename=Project-PK-SetupAArch64
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";

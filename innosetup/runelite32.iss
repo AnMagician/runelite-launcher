@@ -19,7 +19,7 @@ Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${project.projectDir}
-OutputBaseFilename=Project-PK Setup32
+OutputBaseFilename=Project-PK-Setup32
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";

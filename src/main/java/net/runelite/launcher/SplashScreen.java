@@ -183,7 +183,6 @@ public class SplashScreen extends JFrame implements ActionListener {
             INSTANCE = null;
         });
     }
-
     public static void stage(double overallProgress, @Nullable String actionText, String subActionText) {
         stage(overallProgress, actionText, subActionText, null);
     }

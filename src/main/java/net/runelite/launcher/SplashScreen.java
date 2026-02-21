@@ -43,6 +43,7 @@ public class SplashScreen extends JFrame implements ActionListener {
     private static final Color BRAND_ORANGE = new Color(153, 10, 0);
     private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
 
+    
     private static final int WIDTH = 200;
     private static final int PAD = 10;
 

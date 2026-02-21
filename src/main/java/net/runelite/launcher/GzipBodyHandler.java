@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Adam <Adam@sigterm.info>
+ * Copyright (c) 2026, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,23 +22,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.launcher.beans;
+package net.runelite.launcher;
 
-import lombok.Data;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.net.http.HttpResponse;
+import java.util.zip.GZIPInputStream;
 
-@Data
-public class Update
+class GzipBodyHandler
 {
-	private String os; // windows, macos
-	private String osName; // os.name
-	private String osVersion; // os.version
-	private String arch; // os.arch
-	private String name; // update name
-	private String version; // update version
-	private String minimumVersion; // minimum launcher version to update
-	private String url;
-	private String hash;
-	private int size;
-	private double rollout;
-	private int retry = -1; // hours
+	public static HttpResponse.BodyHandler<byte[]> ofByteArray()
+	{
+		return responseInfo ->
+		{
+			boolean isGzip = responseInfo.headers()
+				.allValues("Content-Encoding")
+				.contains("gzip");
+
+			return HttpResponse.BodySubscribers.mapping(
+				HttpResponse.BodySubscribers.ofByteArray(),
+				bytes ->
+				{
+					if (!isGzip)
+					{
+						return bytes;
+					}
+					try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(bytes)))
+					{
+						return gis.readAllBytes();
+					}
+					catch (IOException e)
+					{
+						throw new UncheckedIOException(e);
+					}
+				}
+			);
+		};
+	}
 }

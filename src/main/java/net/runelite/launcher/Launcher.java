@@ -473,7 +473,7 @@ public class Launcher {
         final byte[] bytes = bootstrapResp.body();
 
         Gson g = new Gson();
-        System.out.println(g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class).toString());
+//        System.out.println(g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class).toString());
         return g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class);
     }
 

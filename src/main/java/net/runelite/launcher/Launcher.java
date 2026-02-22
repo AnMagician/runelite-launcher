@@ -455,13 +455,14 @@ public class Launcher {
         HttpRequest bootstrapReq = HttpRequest.newBuilder()
                 .uri(URI.create(LauncherProperties.getBootstrap()))
                 .header("User-Agent", USER_AGENT)
+                .header("Accept-Encoding", "gzip")
                 .GET()
                 .build();
 
         HttpResponse<byte[]> bootstrapResp;
 
         try {
-            bootstrapResp = httpClient.send(bootstrapReq, HttpResponse.BodyHandlers.ofByteArray());
+            bootstrapResp = httpClient.send(bootstrapReq, GzipBodyHandler.ofByteArray());
         } catch (InterruptedException ex) {
             throw new IOException(ex);
         }
@@ -472,7 +473,7 @@ public class Launcher {
 
         final byte[] bytes = bootstrapResp.body();
 
-        Gson g = new Gson();
+        final Gson g = new Gson();
 //        System.out.println(g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class).toString());
         return g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class);
     }
